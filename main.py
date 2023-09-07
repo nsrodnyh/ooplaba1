@@ -31,17 +31,13 @@ class Bot:
 
         @self.bot.message_handler(func=lambda message: "изображение" in message.text.lower())
         def send_random_image(message):
-            # Получение списка файлов из папки с изображениями
             image_files = [f for f in os.listdir(self.images_folder) if
                            os.path.isfile(os.path.join(self.images_folder, f))]
 
             if image_files:
-                # Выбор случайного изображения из списка
                 random_image = random.choice(image_files)
-                # Полный путь к выбранному изображению
                 image_path = os.path.join(self.images_folder, random_image)
 
-                # Отправка изображения пользователю
                 with open(image_path, 'rb') as image_file:
                     self.bot.send_photo(message.chat.id, image_file)
 
