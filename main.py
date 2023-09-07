@@ -52,7 +52,7 @@ class Bot:
                 with open(sound_path, 'rb') as sound_file:
                     self.bot.send_voice(message.chat.id, sound_file)
 
-        @self.bot.message_handler(func=lambda message: "GitHub Link" in message.text)
+        @self.bot.message_handler(func=lambda message: "github link" in message.text.lower)
         def send_github_link(message):
             self.bot.send_message(text='github.com/nsrodnyh/ooplaba1', chat_id=message.chat.id)
         self.bot.polling(none_stop=True)
