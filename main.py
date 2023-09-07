@@ -22,6 +22,7 @@ class Bot:
         def handle_start(message):
             keyboard = types.ReplyKeyboardMarkup(True)
             keyboard.add('Дай звук')
+            keyboard.add('GitHub Link')
             self.bot.send_message(
                 text="Привет! Я ваш бот. Как я могу помочь?",
                 chat_id=message.chat.id,
@@ -55,6 +56,9 @@ class Bot:
                 with open(sound_path, 'rb') as sound_file:
                     self.bot.send_voice(message.chat.id, sound_file)
 
+        @self.bot.message_handler(func=lambda message: "GitHub Link" in message.text)
+        def send_github_link(message):
+            self.bot.send_message(text='github.com/nsrodnyh/ooplaba1', chat_id=message.chat.id)
         self.bot.polling(none_stop=True)
 
 
