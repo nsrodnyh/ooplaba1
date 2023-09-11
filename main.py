@@ -31,8 +31,7 @@ class Bot:
 
         @self.bot.message_handler(func=lambda message: "изображение" in message.text.lower())
         def send_random_image(message):
-            image_files = [f for f in os.listdir(self.images_folder) if
-                           os.path.isfile(os.path.join(self.images_folder, f))]
+            image_files = [f for f in os.listdir(self.images_folder)]
 
             if image_files:
                 random_image = random.choice(image_files)
@@ -43,8 +42,7 @@ class Bot:
 
         @self.bot.message_handler(func=lambda message: "звук" in message.text.lower())
         def send_random_sound(message):
-            sound_files = [f for f in os.listdir(self.sounds_folder)
-                           if os.path.isfile(os.path.join(self.sounds_folder, f))]
+            sound_files = [f for f in os.listdir(self.sounds_folder)]
             if sound_files:
                 random_sound = random.choice(sound_files)
                 sound_path = os.path.join(self.sounds_folder, random_sound)
@@ -52,7 +50,7 @@ class Bot:
                 with open(sound_path, 'rb') as sound_file:
                     self.bot.send_voice(message.chat.id, sound_file)
 
-        @self.bot.message_handler(func=lambda message: "github link" in message.text.lower)
+        @self.bot.message_handler(func=lambda message: "github link" in message.text.lower())
         def send_github_link(message):
             self.bot.send_message(text='github.com/nsrodnyh/ooplaba1', chat_id=message.chat.id)
         self.bot.polling(none_stop=True)
