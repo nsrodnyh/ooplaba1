@@ -5,10 +5,10 @@ import os
 import re
 
 user_token = "6080459375:AAHCWM8yvoYYjcVTNby5sLpK4UJxWy4wSCI"
-user_images_folder = r"C:\Users\nsrod\Pictures\images"
-user_images_folder = re.sub(r'\\', '/', user_images_folder)
-user_sounds_folder = r"C:\Users\nsrod\Music\sounds"
-user_sounds_folder = re.sub(r'\\', '/', user_sounds_folder)
+user_images_folder = r"images"
+# user_images_folder = re.sub(r'\\', '/', user_images_folder)
+user_sounds_folder = r"sounds"
+# user_sounds_folder = re.sub(r'\\', '/', user_sounds_folder)
 
 
 class Bot:
@@ -53,9 +53,9 @@ class Bot:
         @self.bot.message_handler(func=lambda message: "github link" in message.text.lower())
         def send_github_link(message):
             self.bot.send_message(text='github.com/nsrodnyh/ooplaba1', chat_id=message.chat.id)
+
         self.bot.polling(none_stop=True)
 
 
-if __name__ == "__main__":
-    my_bot = Bot(user_token, user_images_folder, user_sounds_folder)
-    my_bot.start()
+my_bot = Bot(user_token, user_images_folder, user_sounds_folder)
+my_bot.start()
